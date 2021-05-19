@@ -1,0 +1,24 @@
+---
+kind: pipeline
+type: kubernetes
+name: build-snapcast
+
+trigger:
+  event:
+    - push
+
+metadata:
+  namespace: drone
+
+steps:
+- name: kaniko
+  image: banzaicloud/drone-kaniko
+  settings:
+    registry: registry.home.sud0.com
+    repo: snapcast
+    tags: latest
+    dockerfile: containers/snapcast/Dockerfile
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
