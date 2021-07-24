@@ -3,10 +3,6 @@ kind: pipeline
 type: kubernetes
 name: build-snapcast
 
-trigger:
-  event:
-    - push
-
 metadata:
   namespace: drone
 
@@ -17,7 +13,6 @@ steps:
     registry: registry.home.sud0.com
     repo: snapcast
     tags: latest
-    dockerfile: containers/snapcast/Dockerfile
     username:
       from_secret: docker_username
     password:
